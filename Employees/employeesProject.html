@@ -1,0 +1,68 @@
+<html>
+<head>
+	<title>Employee Details</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="..\css\myStyles.css">
+</head>
+
+<body>	
+	<p>Employees can be added to projects here:</p>
+	<?php
+		
+		$database = new mysqli("localhost", "palak123", "palak12384", "palak123");
+	    // Check connection
+       if ($database->connect_error) {
+        die("Connection failed: " . $database->connect_error);
+      }
+	   ?>
+<div>
+</div>
+<div>
+<?php
+		$sql = "SELECT Project.ProjectIDNumber, Project.ProjectName, Project.ProjectDueDate,  SupervisorDetails.FirstName, SupervisorDetails.LastName
+				FROM Project JOIN SupervisorDetails ON ( SupervisorDetails.SupervisorID = Project.SupervisorID )";
+		    // query database
+			if (! ($result = $database->query($sql) ) ) {
+				echo ("Could not execute query! <br>");
+				die("Terminating");
+			}
+			for ( $counter = 0; $row = $result->fetch_row(); $counter++) {
+				echo( "<tr>");
+				foreach ( $row as $value)
+					echo ( "<td>$value</td>");
+				echo("</tr>");
+			}
+			?>
+
+ </div>
+
+	<table border = "2" cellpadding = "3" cellspacing = "2" style = "background-color: ADD8E6" align="center" padding="50px">
+	   <tr>
+	   	<th>Employee Details can be Viewed here</th>
+	   </tr>
+	   <tr>
+		 <td>First Name</td>
+		 <td>Last Name</td>	
+		<td>Title</td>
+		<td>ID</td>
+	    </tr>
+<?php
+		$sql = "SELECT * FROM EmployeeDetails";
+			if (! ($result = $database->query($sql) ) ) {
+				echo ("Could not execute query! <br>");
+				die("Terminating");
+			}
+			for ( $counter = 0; $row = $result->fetch_row(); $counter++) {
+				echo( "<tr>");
+				foreach ( $row as $value)
+					echo ( "<td>$value</td>");
+				echo("</tr>");
+			}
+    $database->close(); 
+?>
+
+
+</body>
+
+</html>

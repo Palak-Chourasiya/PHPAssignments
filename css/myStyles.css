@@ -1,0 +1,28 @@
+body{
+	background-color:	#7FFFD4;
+}
+.jumbotron{
+	background-color:#F0FFFF;
+	font-style: center;
+	font-family: Arial;
+
+}
+
+
+td{
+	text-decoration:bold;
+}
+nav{
+	text-align:left;
+	font-size: 20px;
+	margin-top:50px;
+	margin-bottom:50 px;
+	text-decoration: bold;
+	color:blue;
+}
+
+table{
+	margin-top:50px;
+	margin-bottom:50 px;
+	align-self: left;
+}
